@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link
+		rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <style>
+        body {
+            font-family: cursive;
+        }
+
+        .navbar-header button {
+            border:0;
+            color: black;
+        }
+
+        #profile img{
+            
+            max-height: 250px;
+            max-width: 300px;
+            border: 1px solid black;
+        }
+
+        #profile {
+            display:inline-flex;
+            flex-wrap:wrap;
+            padding-left:10%;
+        }
+
+        #profile .name {
+            padding: 10px;
+            padding-left: 30px;
+            font-size: large;
+            font-weight: 750;
+
+        }
+
+        .bio {
+            padding-top: 5px;
+            padding-left: 60px;
+            font-size: medium;
+            font-weight: 200;
+            opacity: 0.850;
+        }
+
+        #details li{
+            font-size: medium;
+            border: 1px solid black !important;
+        }
+
+        #details li:hover {
+            background-color: lightgrey;
+        }
+
+        #posts {
+            display: inline-flex;
+            flex-wrap: wrap;
+            margin: 50px;
+            padding: 20px;
+            padding-left: 40px;
+            margin-left: 150px;
+            margin-right: 100px;
+            border: 2px solid black !important;
+        }
+
+        #posts .card-header {
+            margin-bottom: 50px;
+            font-size:25px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        #postcontainer {
+            margin-left: 30px;
+            margin-right: 30px;
+            margin-bottom : 50px;
+            display: inline-flex;
+            flex-wrap:wrap;
+            height: 250px;
+            width: 300px;
+            border: 1px solid black;
+        }
+
+        #post {
+            width: 300px;
+            height: 250px;
+        }
+
+        .name button {
+            margin: 0px;
+            border:0;
+            background-color: inherit;
+        }
+
+        .name button:hover {
+            background-color: lightgrey;
+        }
+
+        .name a{
+            color: black;
+        }
+
+        .name a:hover{
+            text-decoration: none;
+        }
+
+        .content {
+            display:grid;
+        }
+
+        @media (max-width: 768px) {
+            #postcontainer {
+            margin-left: 20px;
+            margin-right: 20px;
+            margin-bottom : 50px;
+            display: inline-flex;
+            flex-wrap:wrap;
+            height: 180px;
+            width: 220px;
+            border: 1px solid black;
+        }
+
+        #post {
+            width: 220px;
+            height: 180px;
+        }
+
+        #posts {
+            display: inline-flex;
+            flex-wrap: wrap;
+            margin: 50px;
+            padding: 20px;
+            padding-left: 40px;
+            margin-left: 50px;
+            margin-right: 50px;
+            border: 2px solid black !important;
+        }
+        }
+
+         @media (max-width: 580px){
+            #postcontainer {
+            margin-left: 10px;
+            margin-right: 10px;
+            margin-bottom : 25px;
+            display: inline-flex;
+            flex-wrap:wrap;
+            height: 100px;
+            width: 150px;
+            border: 1px solid black;
+        }
+
+        #post {
+            width: 150px;
+            height: 100px;
+        }
+
+        #posts {
+            display: inline-flex;
+            flex-wrap: wrap;
+            margin: 50px;
+            padding: 10px;
+            padding-left: 20px;
+            margin-left: 25px;
+            margin-right: 25px;
+            border: 2px solid black !important;
+        }
+
+        #profile img{
+            max-height: 180px;
+            max-width: 230px;
+            border: 1px solid black;
+        }
+
+         #profile {
+            display:inline-flex;
+            flex-wrap:wrap;
+            padding-left:5%;
+        }
+
+        #profile .name {
+            padding: 10px;
+            padding-left: 5%%;
+            font-size: medium;
+            font-weight: 750;
+
+        }
+
+        .bio {
+            padding-top: 5px;
+            padding-left: 40px;
+            font-size: small;
+            font-weight: 200;
+            opacity: 0.850;
+        }
+
+        #details li{
+            font-size: small;
+            border: 1px solid black !important;
+        }
+        }
+    </style>
+
+</head>
+<body>
+    <nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="navbar-header">
+                    <a href="\">
+					<button
+						type="button"
+						title="return"
+						class="navbar-toggle"
+						>Return Home
+					</button></a>
+					<a class="navbar-brand" href="\">Coup</a>
+				</div>
+				<div class="collapse navbar-collapse" id="mynavbar">
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="\">Return Home</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+        <div class="content">
+            <div class="container-fluid">
+                <div class="card" id="profile">
+                    
+                    <div class="card-content">
+                        <a href="{{user_profile.profileimg.url}}">
+                        <img src="{{user_profile.profileimg.url}}" /></a>
+                    </div>
+                    <div class="name">
+                        {{user_profile.user}}
+                        {% if user_profile.bio != "" %}
+                        <div class="bio">- {{user_profile.bio}}</div>
+                        {% endif %}
+                        <hr>
+                        <ul class="list-inline" id="details">
+                            <li>{{user_post_length}} Posts</li>
+                            {% if user_followers == 0 or user_followers == 1 %}
+                                <li>{{user_followers}}Follower</li>
+                            {% else %}
+                                <li>{{user_followers}}Followers</li>
+                            {% endif %}
+                            <li>{{user_following}}Following </li>
+                            <li>
+                            <form method="POST" action="/follow">
+                                {% csrf_token %}
+                                <input type="hidden" name="follower" value="{{user.username}}">
+                                <input type="hidden" name="user" value="{{user_object.username}}"
+                                {% if user_object.username == user.username%}
+                                    <li><a href="/settings" data-ripple="">Account Settings</a></li>
+                                {% else %}
+                                    <li><button type="submit" title="">{{button_text}}</button></li>
+                                {% endif %}
+                            </form>
+                        </li>
+                        </ul>
+                    </div>
+                </div>
+                {% if user_post_length != 0 %}
+                <div class="card" id="posts">
+                    <div class="card-header">
+                        Posts
+                    </div>
+                    <div class="card-content">
+                        {% for post in user_posts reversed %}
+                            <div class="card" id="postcontainer">
+                                <a href="{{post.image.url}}">
+                                <img id="post" src="{{post.image.url}}" alt=""/></a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif%}
+            </div>
+        </div>
+</body>
+</html>

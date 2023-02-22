@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Settings</title>
+		<link
+			rel="stylesheet"
+			href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+		<style>
+			body {
+				font-family: cursive;
+			}
+			.navbar-header button {
+            border:0;
+            color: black;
+        }
+			.content {
+				margin-top: 150px;
+				margin-bottom: 50px;
+			}
+			.card {
+				position: relative;
+				left: 50%;
+				transform: translateX(-50%);
+				box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19);
+				width: max-content;
+				font-family: cursive;
+				padding: 15px;
+				padding-left: 100px;
+				padding-right: 100px;
+				padding-bottom: 25px;
+				font-size: larger;
+				line-height: 2;
+			}
+
+			.input-class {
+				display: block;
+				padding-left: 5px;
+                background-color: inherit;
+			}
+			img {
+				height: 100px;
+				width: 100px;
+				padding: 5px;
+				padding-bottom: 10px;
+				display: block;
+				background-color: inherit;
+			}
+
+			button {
+				margin-top: 20px;
+				display: inline-block;
+				position: relative;
+			}
+
+            @media(max-width: 640px) {
+                .card {
+				position: relative;
+				left: 50%;
+				transform: translateX(-50%);
+				box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19);
+				width: max-content;
+				font-family: cursive;
+				padding: 15px;
+				padding-left: 30px;
+				padding-right: 30px;
+				padding-bottom: 25px;
+				font-size: medium;
+				line-height: 2;
+			    }
+                .input-class {
+				display: block;
+                width: 250px;
+				padding-left: 5px;
+			    }
+                img {
+				height: 75px;
+				width: 75px;
+				padding: 5px;
+				padding-bottom: 10px;
+				display: block;
+				background-color: inherit;
+			}
+            }
+		</style>
+	</head>
+	<body>
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="navbar-header">
+                    <a href="\">
+					<button
+						type="button"
+						title="return"
+						class="navbar-toggle"
+						>Return Home
+					</button></a>
+					<a class="navbar-brand" href="\">Account Settings for {{user_profile.user}}</a>
+				</div>
+				<div class="collapse navbar-collapse" id="mynavbar">
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="\">Return Home</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<div class="content">
+			<div class="card">
+				<div class="card-body">
+						<form method="POST" action="settings" enctype="multipart/form-data">
+                            {% csrf_token %}
+							<label>Profile Image</label>
+							<img src="{{user_profile.profileimg.url}}" />
+							<input type="file" name="image" placeholder="Noo choosen file" class="input-class" >
+							<label>Bio</label>
+							<input
+								type="textcontent"
+								placeholder="enter your bio"
+								name="bio"
+                                value="{{user_profile.bio}}"
+								class="input-class">
+							<center>
+                                <a href='\'>
+								<button type="button" title="cancel" class="cancel">
+									Cancel
+								</button></a>
+								<button type="submit" title="login" class="save">Save</button>
+							</center>
+						</form>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
